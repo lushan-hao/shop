@@ -4,11 +4,6 @@ import Home from './views/Home.vue'
 import Class from './views/Class.vue'
 import Shopcar from './views/ShopCar.vue'
 import Mine from './views/Mine.vue'
-// let Home = ()=> import('./views/Home.vue');
-// let Class = ()=> import('./views/Class.vue');
-// let Shopcar = ()=> import('./views/ShopCar.vue');
-// let Mine = ()=> import('./views/Mine.vue');
-// import Ajax from './views/Ajax.vue'
 import Detail from './views/Detail.vue'
 import FooterBar from "./components/FooterBar"
 import Error from './views/Error.vue'
@@ -18,6 +13,7 @@ import Error from './views/Error.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

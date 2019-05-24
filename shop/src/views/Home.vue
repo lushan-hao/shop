@@ -1,37 +1,45 @@
 <template>
   <div>
     <van-nav-bar title="首页" class="head">
-      <van-icon  @click="$router.push('/Error')" name="search" slot="left"></van-icon>
-      <van-icon @click="$router.push('/Mine')" slot="right">{{JSON.stringify(userInfo) === '{}'? '未登录': userInfo.userName}}</van-icon>
+      <van-icon @click="$router.push('/Error')" name="search" slot="left"></van-icon>
+      <van-icon
+        @click="$router.push('/Mine')"
+        slot="right"
+      >{{JSON.stringify(userInfo) === '{}'? '未登录': userInfo.userName}}</van-icon>
     </van-nav-bar>
-    <van-swipe :autoplay="3000" class="homeswipe">
-      <van-swipe-item v-for="(item,index) in imgAll" :key="index" class="homeswipe-index">
-        <img v-lazy="item.imgSrc">
-      </van-swipe-item>
-    </van-swipe>
+
+    <div class="homeswipe">
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(item,index) in imgAll" :key="index" class="homeswipe-index">
+          <img :src="item.imgSrc">
+        </van-swipe-item>
+      </van-swipe>
+    </div>
 
     <div class="hot">
-      <p class="hot-title">热门商品</p>
+      <p class="hot-title">热门书籍</p>
       <swiper class="hot-price" :options="swiperOption">
         <swiper-slide class="hot-price-index" v-for="(item,index) in bookprice" :key="index">
-          
-          <!-- <p class="hot-price-index-class">类型{{item.catalog}}</p> -->
-          <img :src="item.img" alt>
+          <img :src="item.img" @click="$router.push('/Error')" alt>
           <p class="hot-price-index-read">{{item.reading}}</p>
-          <p class="hot-price-index-time">发行时间：
-              <br/> {{item.bytime}}</p>
+          <p class="hot-price-index-class">{{item.catalog}}</p>
+          <p class="hot-price-index-time">
+            <br>
+            {{item.bytime}}
+          </p>
         </swiper-slide>
       </swiper>
     </div>
+    
     <div class="recommend">
-        <p class="hot-title">推荐商品</p>
-        <hr/>
-        <ul class="recommend-all">
-          <li v-for="(item,index) in VarietyItem" :key="index" class="recommend-all-item">
-            <img :src="item.img" alt>
-            <p class="hot-price-index-title">{{item.title}}</p>
-          </li>
-        </ul>
+      <p class="hot-title">推荐小说</p>
+      <hr>
+      <ul class="recommend-all">
+        <li v-for="(item,index) in VarietyItem" :key="index" class="recommend-all-item">
+          <img v-lazy="item.img" alt>
+          <p class="hot-price-index-title">{{item.title}}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -39,9 +47,7 @@
 <script>
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import axios from 'axios';
-import url from '@/service.config.js';
-import {mapState} from "vuex";  
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -69,8 +75,35 @@ export default {
       ],
       bookprice: [
         {
+          title: "霍乱时期的爱情",
+          catalog: "外国文学 小说 经典",
+          tags: "外国文学经典 拉美文学 经典好书推荐 经典爱情小说 诺贝尔文学奖 ",
+          img:
+            "http://apis.juhe.cn/goodbook/img/d539d14fe2e9450bb58164d4866819eb.jpg",
+          reading: "5620人阅读",
+          bytime: "2013年4月24日"
+        },
+        {
+          title: "京华烟云",
+          catalog: "中国文学 小说",
+          tags: "中国文学名著 中国近代历史 值得看的好书 小说推荐 经典好书推荐 ",
+          img:
+            "http://apis.juhe.cn/goodbook/img/8de57bb8f82c0f31035d25e48644f3dd.jpg",
+          reading: "3754人阅读",
+          bytime: "2013年4月12日"
+        },
+        {
+          title: "宋词三百首",
+          catalog: "中国文学 小说",
+          tags: "中国文学名著 值得看的好书 小说推荐 经典好书推荐 ",
+          img:
+            "http://img60.ddimg.cn/digital/product/3/59/1901110359_ii_cover.jpg?version=9d4edc5a-28c7-4907-af64-03ff4aa3f411",
+          reading: "35554人阅读",
+          bytime: "2017年4月12日"
+        },
+        {
           title: "1984",
-          catalog: "外国文学 小说 经典名著 ",
+          catalog: "外国文学 小说 经典",
           tags: "世界名著 好书推荐 文学经典 科幻小说 讽喻小说 ",
           img:
             "http://apis.juhe.cn/goodbook/img/4dad281446fea4764dd078d7d6998c7a.jpg",
@@ -97,37 +130,98 @@ export default {
         },
         {
           title: "月亮和六便士",
-          catalog: "外国文学 小说 经典名著 ",
+          catalog: "外国文学 小说 经典",
           tags: "世界名著 好书 理想与现实 经典小说推荐 英国文学 ",
           img:
             "http://apis.juhe.cn/goodbook/img/724e8fb36260f71dc8c245edbcebb1c0.jpg",
           reading: "4824人阅读",
           bytime: "2013年6月13日"
-        },
-        {
-          title: "霍乱时期的爱情",
-          catalog: "外国文学 小说 经典名著 ",
-          tags: "外国文学经典 拉美文学 经典好书推荐 经典爱情小说 诺贝尔文学奖 ",
-          img:
-            "http://apis.juhe.cn/goodbook/img/d539d14fe2e9450bb58164d4866819eb.jpg",
-          reading: "5620人阅读",
-          bytime: "2013年4月24日"
-        },
-        {
-          title: "京华烟云",
-          catalog: "中国文学 小说 经典名著 ",
-          tags: "中国文学名著 中国近代历史 值得看的好书 小说推荐 经典好书推荐 ",
-          img:
-            "http://apis.juhe.cn/goodbook/img/8de57bb8f82c0f31035d25e48644f3dd.jpg",
-          reading: "3754人阅读",
-          bytime: "2013年4月12日"
         }
       ],
       VarietyItem: [
-
+        {
+          title: "吕思勉文集(套装共10册)",
+          img:
+            "http://img61.ddimg.cn/digital/product/73/93/1900717393_ii_cover.jpg?version=bf4c5d2e-2c0c-4950-8f2e-7116f5009f4a555g"
+        },
+        {
+          title: "蒙曼品最美唐诗：人生五味",
+          img:
+            "http://img62.ddimg.cn/digital/product/85/56/1901108556_ii_cover.jpg?version=5d51e7eb-ed3f-4960-8368-4e86ab201841"
+        },
+        {
+          title: "你最好的样子就是做自己",
+          img:
+            "http://img62.ddimg.cn/digital/product/7/92/1901110792_ii_cover.jpg?version=88f53af0-acb6-4d35-899a-a8d255f7f1a5"
+        },
+        {
+          title: "皮囊",
+          img:
+            "http://img62.ddimg.cn/digital/product/30/43/1900493043_ii_cover.jpg?version=b85de2d6-6104-4e99-bd77-aadb38e6cef1"
+        },
+        {
+          title: "东京一年",
+          img:
+            "http://img61.ddimg.cn/digital/product/13/32/1900701332_ii_cover.jpg?version=5cc0d1a6-d2a5-416e-a6b6-bd8edf3fe779555"
+        },
+        {
+          title: "把生活过成你想要的样子",
+          img:
+            "http://img61.ddimg.cn/digital/product/67/74/1900626774_ii_cover.jpg?version=21450fd1-ab7d-4c74-bfa6-5f8f035afdc5"
+        },
+        {
+          title: "夜航船",
+          img:
+            "http://img61.ddimg.cn/digital/product/25/29/1901092529_ii_cover.jpg?version=392c1486-64d8-454a-a1b0-f80981d2ba06"
+        },
+        {
+          title: "龙应台“人生三书",
+          img:
+            "http://img61.ddimg.cn/digital/product/94/83/1900669483_ii_cover.jpg?version=bb06705c-5e64-4978-b387-201c0cf7087e"
+        },
+        {
+          title: "宋词三百首",
+          img:
+            "http://img60.ddimg.cn/digital/product/3/59/1901110359_ii_cover.jpg?version=9d4edc5a-28c7-4907-af64-03ff4aa3f411"
+        },
+        {
+          title: "鲁迅自编文集",
+          img:
+            "http://img60.ddimg.cn/digital/product/19/42/1900631942_ii_cover.jpg?version=a1d43637-daf6-4bde-899f-09bad9243632555"
+        },
+        {
+          title: "摸金天师",
+          img:
+            "http://img61.ddimg.cn/digital/product/43/44/1960404344_ii_cover.jpg?version=689e94ff-d852-400b-a009-82e1afc4d862"
+        },
+        {
+          title: "女总裁的特种神医",
+          img:
+            "http://img61.ddimg.cn/digital/product/58/17/1960395817_ii_cover.jpg?version=6fea8d6b-4274-446d-aef3-aff2c6a22a09"
+        },
+        {
+          title: "残阳帝国",
+          img:
+            "http://img60.ddimg.cn/digital/product/4/22/1960410422_ii_cover.jpg?version=463af6d7-a47e-490b-85b5-7917f854eccf"
+        },
+        {
+          title: "我的26岁女房客",
+          img:
+            "http://img62.ddimg.cn/digital/product/57/8/1960395708_ii_cover.jpg?version=8182c13d-436a-4ec9-a48b-5526cb81ec65"
+        },
+        {
+          title: "全能透视",
+          img:
+            "http://img60.ddimg.cn/digital/product/28/96/1960402896_ii_cover.jpg?version=97fe0be0-e4ce-491d-ac7b-efe4fc131607"
+        },
+        {
+          title: " 致命邂逅：我的美女老板",
+          img:
+            "http://img62.ddimg.cn/digital/product/10/59/1960401059_ii_cover.jpg?version=4e95e613-d380-4c05-812f-ef7a809f2987"
+        }
       ],
       swiperOption: {
-          silderPerView:3
+        slidesPerView: 3
       }
     };
   },
@@ -135,31 +229,15 @@ export default {
     swiper,
     swiperSlide
   },
-  created(){
-    // var url1 = 'http://www.weichuang.com/getList';
-    // var url2 = 'http://www.weichuang.com/getUser';
-    // var url3 = 'http://www.haoluweb.com/regexp';
-    // var url4 = 'http://www.haoluweb.com/list';
-    var url5 = url.getVarietyItem;
-    axios.get(url5).then(res => {
-      // console.log(res.data);
-      this.VarietyItem = res.data;
-    });
-    //  axios.get('https://bird.ioliu.cn/v2?url=https://api.douban.com/v2/movie/top250').then(res=>{
-    //     console.log(res);
-    // }); 
-
+  computed: {
+    ...mapState(["userInfo"])
   },
-  computed:{
-    ...mapState(['userInfo'])
-  },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
 <style lang="scss" scoped>
-.head{
+.head {
   position: fixed;
   top: 0;
   left: 0;
@@ -167,7 +245,7 @@ export default {
   z-index: 999 !important;
 }
 .homeswipe {
-  padding-top: 0.9rem;
+  margin-top: 1rem;
   height: 3rem;
   &-index {
     img {
@@ -187,7 +265,7 @@ export default {
     padding-bottom: 0.2rem;
   }
   &-price-index {
-    width: 2.1rem !important ;
+    width: 2.15rem !important ;
     text-align: center;
     &-title {
       font-size: 0.25rem;
@@ -198,32 +276,35 @@ export default {
       width: 1.6rem;
       height: 2.2rem;
     }
-    &-read{
+    &-read {
       font-size: 0.1rem;
       opacity: 0.5;
     }
-    &-time{
+    &-time {
+      margin-top: -0.5rem;
       font-size: 0.12rem;
+    }
+    &-class {
+      height: 0.5rem;
     }
   }
 }
-.recommend{
+.recommend {
   background-color: #eee;
   margin-bottom: 1rem;
-  &-all{
+  &-all {
     clear: both;
     overflow: hidden;
-    &-item{
+    &-item {
       width: 50%;
       float: left;
       text-align: center;
       padding-top: 0.2rem;
-      img{
+      img {
         width: 2.2rem;
         height: 2.8rem;
       }
     }
   }
-
 }
 </style>
