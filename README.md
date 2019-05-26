@@ -18,5 +18,7 @@ https://blog.csdn.net/m0_38039437/article/details/80196576
 接下来上传到服务器上，这个应该很容易，不做过多介绍，记得运行node  
 之后发现正常，可是在获取数据库数据还是失败，查找发现发送请求时缺少，无法发送请求，上网查询发现koa2-cors有错误，做出如下修改  
 ![Alt text](https://github.com/haolushan5253/shop/blob/master/img/3.JPG)  
+记得localhost换上自己部署上线的网址
+
 终于我的成功了，第一次写踩过的坑，写的很差，见谅。
 
