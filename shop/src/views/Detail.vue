@@ -5,8 +5,8 @@
     <div class="detail">
       <p class="detail-name">{{detail.name}}</p>
       <p class="detail-price">￥{{detail.price}}</p>
-      <p>公司：{{detail.company}}</p>
-      <p>产地：{{detail.city}}</p>
+      <p>推荐：{{detail.company}}</p>
+      <p>发版日期：{{detail.city}}</p>
     </div>
     <van-goods-action>
       <van-goods-action-mini-btn icon="chat-o" text="客服" @click="talk"/>
@@ -39,7 +39,9 @@ export default {
       .then(res => {
         this.detail = res.data;
       })
-      .catch(res => {});
+      .catch(res => {
+        this.$toast.fail("好像失败了呢，原因："+res);
+      });
   },
   computed: {
     ...mapState(["userInfo"])
@@ -69,7 +71,7 @@ export default {
             }
           })
           .catch(res => {
-            console.log(res);
+            this.$toast.fail("好像失败了呢，原因："+res);
           });
       }
     },
@@ -80,7 +82,7 @@ export default {
       this.$router.push("/shopcar");
     },
     buy() {
-      this.$toast.fail("对不起，我们不卖");
+      this.$toast.fail("对不起，请先加入购物车");
     }
   }
 };
@@ -91,8 +93,9 @@ export default {
 .detail {
   padding: 0.2rem;
   &-img {
-    width: 100%;
+    width: 80%;
     height: 5rem;
+    margin-left: 10%;
   }
   &-name {
     color: #333;

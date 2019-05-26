@@ -5,7 +5,7 @@ const app = new Koa();
 //解决跨域问题
 const cors = require('koa2-cors');
 app.use(cors({
-    Origin: ['http://www.haoluweb.top'],
+    Origin: ['http://www.haoluweb.top'],           //Origin: ['http://www.haoluweb.top'],
     credentials: true,
     allowMethods: ["GET", "POST", "DELETE"],
     allowHeaders: ["Content-Type", "Authorization", "Accept"]

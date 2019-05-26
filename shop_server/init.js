@@ -2,7 +2,7 @@
 
 
 const mongoose = require('mongoose');
-const db = 'mongodb://admin:admin@47.94.5.58/shop';           //默认27017端口号，如果自定义在localhost后面
+const db = 'mongodb://47.94.5.58/shop';           //默认27017端口号，如果自定义在localhost后面  const db = 'mongodb://47.94.5.58/shop';    mongodb://localhost/shop
 
 
 

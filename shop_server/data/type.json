@@ -1,27 +1,27 @@
 [
     {
         "typeId": 1,
-        "typeName": "拖拉机" 
+        "typeName": "青春" 
     },{
         "typeId": 2,
-        "typeName": "收割机" 
+        "typeName": "科技" 
     },{
         "typeId": 3,
-        "typeName": "打捆机" 
+        "typeName": "军事" 
     },{
         "typeId": 4,
-        "typeName": "脱粒机" 
+        "typeName": "文艺" 
     },{
         "typeId": 5,
-        "typeName": "搅拌机" 
+        "typeName": "古典" 
     },{
         "typeId": 6,
-        "typeName": "播种机" 
+        "typeName": "科幻" 
     },{
         "typeId": 7,
-        "typeName": "粉碎机" 
+        "typeName": "悬疑" 
     },{
         "typeId": 8,
-        "typeName": "烘干机" 
+        "typeName": "玄幻" 
     }
 ]
