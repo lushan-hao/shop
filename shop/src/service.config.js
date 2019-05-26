@@ -1,5 +1,5 @@
 // const MOCKURL = 'http://www.haoluweb.com/'; // mock模拟
-const SERVERURL = 'http://www.haoluweb.top:3000/';//真实URL  //http://www.haoluweb.top:3000/ http://localhost:3000/
+const SERVERURL = 'http://localhost:3000/';//真实URL  //http://www.haoluweb.top:3000/ http://localhost:3000/
 
 const URL = {
     // getVarietyItem: MOCKURL + 'getVarietyItem',           //推荐商品
